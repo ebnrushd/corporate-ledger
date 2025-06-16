@@ -1,0 +1,7 @@
+Flask
+psycopg2-binary
+Web3py
+python-dotenv # For managing environment variables like private keys
+# cryptography might be needed if we were to encrypt/decrypt anything here, but not directly for this task.
+# py-solc-x is not needed here as we assume contract is already compiled/deployed.
+# uvicorn is for FastAPI, not Flask.
