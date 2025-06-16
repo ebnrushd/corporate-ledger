@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiate Visa Top-Up</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        label { display: block; margin-top: 10px; }
+        input[type="text"], input[type="number"] {
+            width: 300px;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #responseMessage {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Initiate Visa Top-Up</h1>
+    <p>This is a placeholder UI to interact with the top-up initiation API.</p>
+
+    <form id="topUpForm">
+        <div>
+            <label for="userId">User ID (or Ethereum Address for SC user):</label>
+            <!-- In a real app, User ID might be an email or internal ID.
+                 For this service, if user_id is intended for the SC 'user' field,
+                 it should be an Ethereum address. Otherwise, backend needs to resolve it.
+                 The current backend app.py uses user_id as account_id (UUID from DB) for ledger
+                 and tries to use it as an Ethereum address for SC or defaults to API service's address.
+                 This UI field needs to match the expected `user_id` in the `/topup/initiate` API request.
+            -->
+            <input type="text" id="userId" name="userId" required placeholder="e.g., 0x... or internal_user_uuid">
+        </div>
+
+        <div>
+            <label for="amount">Amount (e.g., 100.00):</label>
+            <input type="number" id="amount" name="amount" step="0.01" min="0.01" required placeholder="Enter amount">
+        </div>
+
+        <div>
+            <label for="visaCardLastFour">Visa Card Last Four Digits:</label>
+            <!-- PCI DSS: This field collects sensitive card data (last four digits).
+                 Ensure this page is served over HTTPS.
+                 The data should be handled securely by the JavaScript and backend.
+            -->
+            <input type="text" id="visaCardLastFour" name="visaCardLastFour" pattern="\d{4}" maxlength="4" required placeholder="e.g., 1234">
+        </div>
+
+        <button type="submit">Initiate Top-Up</button>
+    </form>
+
+    <h2>API Response:</h2>
+    <div id="responseMessage">
+        <!-- Server responses will be displayed here -->
+    </div>
+
+    <!-- Link to the JavaScript file -->
+    <script src="scripts/main.js"></script>
+</body>
+</html>

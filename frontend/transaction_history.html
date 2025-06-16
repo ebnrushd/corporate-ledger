@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #historyResponseMessage {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .success { /* For general success messages if any */
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .error { /* For error messages */
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        .info { /* For informational messages like 'loading' */
+            color: #004085;
+            background-color: #cce5ff;
+            border-color: #b8daff;
+        }
+        .description-cell {
+            max-width: 250px; /* Limit width of description */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Transaction History</h1>
+    <p>View transactions from the ledger.</p>
+
+    <div>
+        <label for="filterUserId">Filter by User ID (Optional):</label>
+        <input type="text" id="filterUserId" placeholder="Enter User ID (UUID)">
+        <button id="fetchHistoryButton">Fetch Transaction History</button>
+    </div>
+
+    <div id="historyResponseMessage">
+        <!-- Messages regarding fetching history will be displayed here -->
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Sender ID</th>
+                <th>Receiver ID</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+            </tr>
+        </thead>
+        <tbody id="transactionHistoryTableBody">
+            <!-- Transaction data will be populated here by JavaScript -->
+        </tbody>
+    </table>
+
+    <!-- Link to the JavaScript file -->
+    <!-- Assuming main.js will also contain the logic for this page -->
+    <script src="scripts/main.js"></script>
+</body>
+</html>
